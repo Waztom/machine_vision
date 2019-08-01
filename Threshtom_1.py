@@ -6,7 +6,7 @@ import glob
 # Open and crop images
 for image in glob.glob('*.tif'): 
     file_name = str(image)
-    image = io.imread(image)
+    image = io.imread(image,as_gray=True)
     pylab.imshow(image)
     pylab.show()
     m,n =image.shape
@@ -31,7 +31,7 @@ for image in glob.glob('*.tif'):
 #Global Otsu method
     T = threshold_otsu(image_crop)
     image_otsu = image_crop > T
-    pylab.imshow(image_otsu, cmap='Purples')
+    pylab.imshow(image_otsu, cmap='Blues')
     pylab.savefig('Otsu ' + file_name, format ='tiff', dpi = 400)
     pylab.show()
     areacatalyst = image_otsu.sum()
